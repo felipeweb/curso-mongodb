@@ -163,6 +163,18 @@
 			<artifactId>vraptor-java8</artifactId>
 			<version>4.0.0.Final</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>2.13.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>bson</artifactId>
+			<version>2.13.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>

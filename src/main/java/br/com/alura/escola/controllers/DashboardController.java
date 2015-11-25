@@ -6,27 +6,23 @@ import br.com.caelum.vraptor.Result;
 
 import javax.inject.Inject;
 
-/**
- * Created by felipeweb on 27/03/15.
- */
 @Controller
-public class IndexController {
+public class DashboardController {
     private final Result result;
 
     /**
      * @deprecated CDI eyes only
      */
-    protected IndexController() {
+    protected DashboardController() {
         this(null);
     }
 
     @Inject
-    public IndexController(Result result) {
+    public DashboardController(Result result) {
         this.result = result;
     }
 
     @Get("/")
     public void index() {
-        result.include("mensagem", "Curso de MongoDB co Java");
     }
 }
