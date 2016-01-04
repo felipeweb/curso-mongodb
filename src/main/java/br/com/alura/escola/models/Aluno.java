@@ -11,7 +11,6 @@ public class Aluno {
 	private String nome;
 	private Date dataDeNascimento;
 	private Curso curso;
-	private List<Habilidade> habilidades;
 
 	public String getId() {
 		return id;
@@ -43,13 +42,5 @@ public class Aluno {
 
 	public void setCurso(Curso curso) {
 		this.curso = curso;
-	}
-
-	public List<Habilidade> getHabilidades() {
-		return habilidades;
-	}
-
-	public void setHabilidades(List<Habilidade> habilidades) {
-		this.habilidades = habilidades;
 	}
 }
