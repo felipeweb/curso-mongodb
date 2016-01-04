@@ -1,20 +1,21 @@
 package br.com.alura.escola.daos;
 
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import java.net.UnknownHostException;
 import javax.annotation.PostConstruct;
+import org.bson.Document;
 
 /**
  * Created by felipeweb on 11/25/15.
  */
 public class AlunoDao {
-	private DBCollection collection;
+	private MongoCollection<Document> collection;
 
 	@PostConstruct
 	public void startCollection() throws UnknownHostException {
-		DB db = new MongoClient("localhost").getDB("escola");
+		MongoDatabase db = new MongoClient("localhost").getDatabase("escola");
 		this.collection = db.getCollection("aluno");
 	}
 }
