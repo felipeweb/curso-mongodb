@@ -1,4 +1,4 @@
-package br.com.alura.escola.controllers;
+package br.com.alura.escola.controller;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
