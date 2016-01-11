@@ -27,18 +27,28 @@ public class AlunoDao {
 		try (MongoCursor<Document> cursor = collection.find().iterator()) {
 			while (cursor.hasNext()) {
 				Document document = cursor.next();
-				Aluno aluno = transformaDocumentEmCurso(document);
+				Aluno aluno = transformaDocumentEmAluno(document);
 				alunos.add(aluno);
 			}
 		}
 		return alunos;
 	}
 
-	private Aluno transformaDocumentEmCurso(Document document) {
+	public void insert(Aluno aluno) {
+		collection.insertOne(transformaAlunoEmDocument(aluno));
+	}
+
+	private Aluno transformaDocumentEmAluno(Document document) {
 		return new Aluno(document.getObjectId("_id").toString(),
 				document.getString("nome"),
 				document.getDate("data_nascimento"),
 				new Curso(document.getString("curso.nome")));
+	}
+
+	private Document transformaAlunoEmDocument(Aluno aluno) {
+		return new Document("nome", aluno.getNome())
+				.append("data_nascimento", aluno.getDataDeNascimento())
+				.append("curso", new Document("nome", aluno.getCurso().getNome()));
 	}
 
 	@PreDestroy
