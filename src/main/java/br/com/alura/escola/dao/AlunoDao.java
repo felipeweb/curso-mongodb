@@ -39,10 +39,11 @@ public class AlunoDao {
 	}
 
 	private Aluno transformaDocumentEmAluno(Document document) {
+		String nomeDoCurso = ((Document) document.get("curso")).getString("nome");
 		return new Aluno(document.getObjectId("_id").toString(),
 				document.getString("nome"),
 				document.getDate("data_nascimento"),
-				new Curso(document.getString("curso.nome")));
+				new Curso(nomeDoCurso));
 	}
 
 	private Document transformaAlunoEmDocument(Aluno aluno) {

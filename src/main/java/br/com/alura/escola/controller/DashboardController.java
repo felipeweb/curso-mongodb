@@ -1,5 +1,6 @@
 package br.com.alura.escola.controller;
 
+import br.com.alura.escola.dao.AlunoDao;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Result;
@@ -24,5 +25,6 @@ public class DashboardController {
 
     @Get("/")
     public void index() {
+        result.include("alunos",  new AlunoDao().listaTudo());
     }
 }

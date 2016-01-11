@@ -1,5 +1,10 @@
 package org.vraptor;
 
+import br.com.alura.escola.dao.AlunoDao;
+import br.com.alura.escola.model.Aluno;
+import br.com.alura.escola.model.Curso;
+import java.util.Calendar;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         String webappDirLocation = getWebAppDir();
