@@ -17,6 +17,7 @@
                                     <th>ID</th>
                                     <th>Nome</th>
                                     <th>Curso</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -25,6 +26,7 @@
                                         <td>${aluno.id}</td>
                                         <td>${aluno.nome}</td>
                                         <td>${aluno.curso.nome}</td>
+                                        <td><a href="/aluno/atualiza?id=${aluno.id}"><i class="fa fa-pencil"></i></a></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

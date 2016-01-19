@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Escola Alura</a>
+        <a class="navbar-brand" href="/">Escola Alura</a>
     </div>
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
@@ -23,6 +23,7 @@
                     </div>
                     <!-- /input-group -->
                 </li>
+                <li><a href="/aluno/adiciona">Adicionar novo aluno</a></li>
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

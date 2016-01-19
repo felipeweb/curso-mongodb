@@ -5,10 +5,12 @@ import br.com.alura.escola.model.Curso;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+import com.mongodb.client.model.Updates;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PreDestroy;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 /**
  * Created by felipeweb on 11/25/15.
@@ -36,6 +38,15 @@ public class AlunoDao {
 
 	public void insert(Aluno aluno) {
 		collection.insertOne(transformaAlunoEmDocument(aluno));
+	}
+
+	public void update(Aluno aluno) {
+		collection.updateOne(new Document("_id", new ObjectId(aluno.getId())), new Document("$set", transformaAlunoEmDocument(aluno)));
+	}
+
+	public Aluno listaPorId(String id) {
+		Document document = collection.find(new Document("_id", new ObjectId(id))).first();
+		return transformaDocumentEmAluno(document);
 	}
 
 	private Aluno transformaDocumentEmAluno(Document document) {

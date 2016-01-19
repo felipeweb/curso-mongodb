@@ -1,7 +1,10 @@
 package br.com.alura.escola.model;
 
 public class Curso {
-	private final String nome;
+	private String nome;
+
+	public Curso() {
+	}
 
 	public Curso(String nome) {
 		this.nome = nome;
@@ -9,5 +12,9 @@ public class Curso {
 
 	public String getNome() {
 		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }
