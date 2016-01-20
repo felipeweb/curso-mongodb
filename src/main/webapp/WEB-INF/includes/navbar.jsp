@@ -23,7 +23,8 @@
                     </div>
                     <!-- /input-group -->
                 </li>
-                <li><a href="/aluno/adiciona">Adicionar novo aluno</a></li>
+                <li><a href="/aluno/adiciona">Novo aluno</a></li>
+                <li><a href="/">Listar alunos</a></li>
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
