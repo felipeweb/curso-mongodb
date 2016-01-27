@@ -41,10 +41,16 @@ public class AlunoController {
 		AlunoDao alunoDao = new AlunoDao();
 		if (aluno.getId() == null) {
 			alunoDao.insert(aluno);
-			result.redirectTo(DashboardController.class).index();
 		} else {
 			alunoDao.update(aluno);
-			result.redirectTo(DashboardController.class).index();
 		}
+		result.redirectTo(DashboardController.class).index();
+	}
+
+	@Get
+	public void deleta(String id) {
+		AlunoDao alunoDao = new AlunoDao();
+		alunoDao.delete(id);
+		result.redirectTo(DashboardController.class).index();
 	}
 }

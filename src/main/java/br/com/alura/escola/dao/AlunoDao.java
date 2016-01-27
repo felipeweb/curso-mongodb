@@ -48,6 +48,10 @@ public class AlunoDao {
 		return transformaDocumentEmAluno(document);
 	}
 
+	public void delete(String id) {
+		collection.deleteOne(new Document("_id", new ObjectId(id)));
+	}
+
 	private Aluno transformaDocumentEmAluno(Document document) {
 		String nomeDoCurso = ((Document) document.get("curso")).getString("nome");
 		return new Aluno(document.getObjectId("_id").toString(),

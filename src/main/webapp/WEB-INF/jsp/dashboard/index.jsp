@@ -26,7 +26,10 @@
                                         <td>${aluno.id}</td>
                                         <td>${aluno.nome}</td>
                                         <td>${aluno.curso.nome}</td>
-                                        <td><a href="/aluno/atualiza?id=${aluno.id}"><i class="fa fa-pencil"></i></a></td>
+                                        <td>
+                                            <a href="/aluno/atualiza?id=${aluno.id}"><i class="fa fa-pencil"></i></a>
+                                            <a href="/aluno/deleta?id=${aluno.id}"><i class="fa fa-trash"></i></a>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
