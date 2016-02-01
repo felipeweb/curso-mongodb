@@ -1,6 +1,9 @@
 package br.com.alura.escola.model;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by felipeweb on 11/25/15.
@@ -10,15 +13,21 @@ public class Aluno {
 	private String nome;
 	private Date dataDeNascimento;
 	private Curso curso;
+	private List<Integer> notas;
 
 	public Aluno() {
 	}
 
-	public Aluno(String id, String nome, Date dataDeNascimento, Curso curso) {
+	public Aluno(String id, String nome, Date dataDeNascimento, Curso curso, Integer... notas) {
 		this.id = id;
 		this.nome = nome;
 		this.dataDeNascimento = dataDeNascimento;
 		this.curso = curso;
+		if (notas != null) {
+			this.notas = Arrays.asList(notas);
+		} else {
+			this.notas = Collections.emptyList();
+		}
 	}
 
 	public String getId() {
@@ -51,5 +60,13 @@ public class Aluno {
 
 	public void setCurso(Curso curso) {
 		this.curso = curso;
+	}
+
+	public List<Integer> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Integer> notas) {
+		this.notas = notas;
 	}
 }

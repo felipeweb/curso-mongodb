@@ -53,17 +53,19 @@ public class AlunoDao {
 	}
 
 	private Aluno transformaDocumentEmAluno(Document document) {
+		Integer[] notas = (Integer[]) document.get("notas");
 		String nomeDoCurso = ((Document) document.get("curso")).getString("nome");
 		return new Aluno(document.getObjectId("_id").toString(),
 				document.getString("nome"),
 				document.getDate("data_nascimento"),
-				new Curso(nomeDoCurso));
+				new Curso(nomeDoCurso), notas);
 	}
 
 	private Document transformaAlunoEmDocument(Aluno aluno) {
 		return new Document("nome", aluno.getNome())
 				.append("data_nascimento", aluno.getDataDeNascimento())
-				.append("curso", new Document("nome", aluno.getCurso().getNome()));
+				.append("curso", new Document("nome", aluno.getCurso().getNome()))
+				.append("notas", aluno.getNotas());
 	}
 
 	@PreDestroy
