@@ -9,21 +9,23 @@ import javax.inject.Inject;
 @Controller
 public class DashboardController {
     private final Result result;
+    private final AlunoDao alunoDao;
 
     /**
      * @deprecated CDI eyes only
      */
     protected DashboardController() {
-        this(null);
+        this(null, null);
     }
 
     @Inject
-    public DashboardController(Result result) {
+    public DashboardController(Result result, AlunoDao alunoDao) {
         this.result = result;
+        this.alunoDao = alunoDao;
     }
 
     @Get("/")
     public void index() {
-        result.include("alunos",  new AlunoDao().listaTudo());
+        result.include("alunos",  alunoDao.lista());
     }
 }

@@ -14,17 +14,19 @@ import javax.inject.Inject;
 @Controller
 public class AlunoController {
 	private final Result result;
+	private final AlunoDao alunoDao;
 
 	/**
 	 * @deprecated CDI eyes only
 	 */
 	protected AlunoController() {
-		this(null);
+		this(null, null);
 	}
 
 	@Inject
-	public AlunoController(Result result) {
+	public AlunoController(Result result, AlunoDao alunoDao) {
 		this.result = result;
+		this.alunoDao = alunoDao;
 	}
 
 	@Get
@@ -33,24 +35,22 @@ public class AlunoController {
 
 	@Get
 	public void atualiza(String id) {
-		result.include("aluno", new AlunoDao().listaPorId(id));
+		result.include("aluno", alunoDao.listaPorId(id));
 	}
 
 	@Post
 	public void save(Aluno aluno) {
-		AlunoDao alunoDao = new AlunoDao();
 		if (aluno.getId() == null) {
-			alunoDao.insert(aluno);
+			alunoDao.insere(aluno);
 		} else {
-			alunoDao.update(aluno);
+			alunoDao.atualiza(aluno);
 		}
 		result.redirectTo(DashboardController.class).index();
 	}
 
 	@Get
-	public void deleta(String id) {
-		AlunoDao alunoDao = new AlunoDao();
-		alunoDao.delete(id);
+	public void remove(String id) {
+		alunoDao.remove(id);
 		result.redirectTo(DashboardController.class).index();
 	}
 }

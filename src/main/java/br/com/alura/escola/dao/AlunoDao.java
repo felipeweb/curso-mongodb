@@ -7,7 +7,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PreDestroy;
+import javax.inject.Inject;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -16,14 +16,20 @@ import org.bson.types.ObjectId;
  */
 public class AlunoDao {
 	private final MongoCollection<Document> collection;
-	private final MongoClient client;
 
+	/**
+	 * @deprecated CDI eyes only
+	 */
 	public AlunoDao() {
-		this.client = new MongoClient("localhost");
+		this(null);
+	}
+
+	@Inject
+	public AlunoDao(MongoClient client) {
 		this.collection = client.getDatabase("escola").getCollection("aluno");
 	}
 
-	public List<Aluno> listaTudo() {
+	public List<Aluno> lista() {
 		List<Aluno> alunos = new ArrayList<>();
 		try (MongoCursor<Document> cursor = collection.find().iterator()) {
 			while (cursor.hasNext()) {
@@ -35,11 +41,11 @@ public class AlunoDao {
 		return alunos;
 	}
 
-	public void insert(Aluno aluno) {
+	public void insere(Aluno aluno) {
 		collection.insertOne(transformaAlunoEmDocument(aluno));
 	}
 
-	public void update(Aluno aluno) {
+	public void atualiza(Aluno aluno) {
 		collection.updateOne(new Document("_id", new ObjectId(aluno.getId())), new Document("$set", transformaAlunoEmDocument(aluno)));
 	}
 
@@ -48,7 +54,7 @@ public class AlunoDao {
 		return transformaDocumentEmAluno(document);
 	}
 
-	public void delete(String id) {
+	public void remove(String id) {
 		collection.deleteOne(new Document("_id", new ObjectId(id)));
 	}
 
@@ -66,10 +72,5 @@ public class AlunoDao {
 				.append("data_nascimento", aluno.getDataDeNascimento())
 				.append("curso", new Document("nome", aluno.getCurso().getNome()))
 				.append("notas", aluno.getNotas());
-	}
-
-	@PreDestroy
-	public void close() {
-		client.close();
 	}
 }
