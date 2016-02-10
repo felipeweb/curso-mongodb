@@ -18,7 +18,7 @@ public class Aluno {
 	public Aluno() {
 	}
 
-	public Aluno(String id, String nome, Date dataDeNascimento, Curso curso, Integer... notas) {
+	public Aluno(String id, String nome, Date dataDeNascimento, Curso curso, Integer[] notas) {
 		this.id = id;
 		this.nome = nome;
 		this.dataDeNascimento = dataDeNascimento;
