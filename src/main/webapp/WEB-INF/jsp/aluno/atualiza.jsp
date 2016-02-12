@@ -32,6 +32,25 @@
                             <button class="btn btn-success btn-block" type="submit">Atualizar</button>
                         </div>
                     </form>
+                    <h2>Notas do aluno</h2>
+                    <c:if test="${empty aluno.notas}">
+                        <p>Não existem notas cadastradas para o aluno</p>
+                    </c:if>
+                    <ul>
+                        <c:forEach items="${aluno.notas}" var="nota">
+                            <li>${nota}</li>
+                        </c:forEach>
+                    </ul>
+                    <form role="form" method="get" action="/aluno/atualizaNotas">
+                        <div class="form-group">
+                            <input type="hidden" name="id" value="${aluno.id}">
+                            <label for="nota">Nota</label>
+                            <input class="form-control" type="number" id="nota" name="nota" placeholder="Nota do aluno">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success btn-block" type="submit">Adicionar nota</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

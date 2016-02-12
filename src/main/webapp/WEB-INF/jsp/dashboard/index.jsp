@@ -28,7 +28,7 @@
                                         <td>${aluno.curso.nome}</td>
                                         <td>
                                             <a href="/aluno/atualiza?id=${aluno.id}"><i class="fa fa-pencil"></i></a>
-                                            <a href="/aluno/deleta?id=${aluno.id}"><i class="fa fa-trash"></i></a>
+                                            <a href="/aluno/remove?id=${aluno.id}"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 </c:forEach>

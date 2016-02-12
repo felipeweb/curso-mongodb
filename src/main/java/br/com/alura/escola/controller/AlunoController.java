@@ -29,6 +29,12 @@ public class AlunoController {
 		this.alunoDao = alunoDao;
 	}
 
+	@Get("/aluno/atualizaNotas")
+	public void atualizaNotas(String id, Integer nota) {
+		alunoDao.atualizaNota(id, nota);
+		result.redirectTo("/aluno/atualiza?id=" + id);
+	}
+
 	@Get
 	public void adiciona() {
 	}

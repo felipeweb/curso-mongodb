@@ -6,6 +6,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.inject.Inject;
 import org.bson.Document;
@@ -49,6 +50,14 @@ public class AlunoDao {
 		collection.updateOne(new Document("_id", new ObjectId(aluno.getId())), new Document("$set", transformaAlunoEmDocument(aluno)));
 	}
 
+//	public void criaArrayNotas(String id) {
+//		collection.updateOne(new Document("_id", new ObjectId(id)), new Document("$set", new Document("notas", Collections.emptyList())));
+//	}
+
+	public void atualizaNota(String id, Integer nota) {
+		collection.updateOne(new Document("_id", new ObjectId(id)), new Document("$push", new Document("notas", Arrays.asList(nota))));
+	}
+
 	public Aluno listaPorId(String id) {
 		Document document = collection.find(new Document("_id", new ObjectId(id))).first();
 		return transformaDocumentEmAluno(document);
@@ -59,7 +68,7 @@ public class AlunoDao {
 	}
 
 	private Aluno transformaDocumentEmAluno(Document document) {
-		Integer[] notas = (Integer[]) document.get("notas");
+		List<Integer> notas = (List<Integer>) document.get("notas");
 		String nomeDoCurso = ((Document) document.get("curso")).getString("nome");
 		return new Aluno(document.getObjectId("_id").toString(),
 				document.getString("nome"),

@@ -1,7 +1,6 @@
 package br.com.alura.escola.model;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,21 +12,17 @@ public class Aluno {
 	private String nome;
 	private Date dataDeNascimento;
 	private Curso curso;
-	private List<Integer> notas;
+	private List<Integer> notas = new ArrayList<>();
 
 	public Aluno() {
 	}
 
-	public Aluno(String id, String nome, Date dataDeNascimento, Curso curso, Integer[] notas) {
+	public Aluno(String id, String nome, Date dataDeNascimento, Curso curso, List<Integer> notas) {
 		this.id = id;
 		this.nome = nome;
 		this.dataDeNascimento = dataDeNascimento;
 		this.curso = curso;
-		if (notas != null) {
-			this.notas = Arrays.asList(notas);
-		} else {
-			this.notas = Collections.emptyList();
-		}
+		this.notas = notas;
 	}
 
 	public String getId() {
