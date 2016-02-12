@@ -50,10 +50,6 @@ public class AlunoDao {
 		collection.updateOne(new Document("_id", new ObjectId(aluno.getId())), new Document("$set", transformaAlunoEmDocument(aluno)));
 	}
 
-//	public void criaArrayNotas(String id) {
-//		collection.updateOne(new Document("_id", new ObjectId(id)), new Document("$set", new Document("notas", Collections.emptyList())));
-//	}
-
 	public void atualizaNota(String id, Integer nota) {
 		collection.updateOne(new Document("_id", new ObjectId(id)), new Document("$push", new Document("notas", Arrays.asList(nota))));
 	}
