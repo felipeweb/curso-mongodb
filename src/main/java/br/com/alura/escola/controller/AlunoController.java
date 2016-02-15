@@ -31,7 +31,12 @@ public class AlunoController {
 
 	@Get("/aluno/atualizaNotas")
 	public void atualizaNotas(String id, Integer nota) {
-		alunoDao.atualizaNota(id, nota);
+		Aluno aluno = alunoDao.listaPorId(id);
+		if (aluno.getNotas() == null) {
+			alunoDao.criaArrayDeNotas(id, nota);
+		} else {
+			alunoDao.atualizaNota(id, nota);
+		}
 		result.redirectTo("/aluno/atualiza?id=" + id);
 	}
 
