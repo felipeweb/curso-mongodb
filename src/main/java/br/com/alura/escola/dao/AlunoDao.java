@@ -43,6 +43,18 @@ public class AlunoDao {
 		return alunos;
 	}
 
+	public List<Aluno> listaMelhoresAlunos() {
+		List<Aluno> alunos = new ArrayList<>();
+		try (MongoCursor<Document> cursor = collection.find().sort(new Document("notas", -1)).iterator()) {
+			while (cursor.hasNext()) {
+				Document document = cursor.next();
+				Aluno aluno = transformaDocumentEmAluno(document);
+				alunos.add(aluno);
+			}
+		}
+		return alunos;
+	}
+
 	public void insere(Aluno aluno) {
 		collection.insertOne(transformaAlunoEmDocument(aluno));
 	}

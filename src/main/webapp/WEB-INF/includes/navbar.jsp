@@ -25,6 +25,7 @@
                 </li>
                 <li><a href="/aluno/adiciona">Novo aluno</a></li>
                 <li><a href="/">Listar alunos</a></li>
+                <li><a href="/melhoresAlunos">Melhores alunos</a></li>
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
