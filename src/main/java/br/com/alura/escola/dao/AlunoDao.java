@@ -44,7 +44,7 @@ public class AlunoDao {
 
 	public List<Aluno> listaMelhoresAlunos() {
 		List<Aluno> alunos = new ArrayList<>();
-		try (MongoCursor<Document> cursor = collection.find().sort(new Document("notas", -1)).iterator()) {
+		try (MongoCursor<Document> cursor = collection.find().sort(new Document("data_nascimento", 1)).iterator()) {
 			while (cursor.hasNext()) {
 				Document document = cursor.next();
 				Aluno aluno = transformaDocumentEmAluno(document);

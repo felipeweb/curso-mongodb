@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:import url="/WEB-INF/includes/header.jsp"/>
 <div id="wrapper">
@@ -16,6 +17,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nome</th>
+                                    <th>Data de Nascimento</th>
                                     <th>Curso</th>
                                     <th>Notas</th>
                                 </tr>
@@ -25,6 +27,7 @@
                                     <tr>
                                         <td>${aluno.id}</td>
                                         <td>${aluno.nome}</td>
+                                        <td><fmt:formatDate value="${aluno.dataDeNascimento}" pattern="dd/MM/yyyy"/></td>
                                         <td>${aluno.curso.nome}</td>
                                         <td>
                                            <c:forEach items="${aluno.notas}" var="nota">
